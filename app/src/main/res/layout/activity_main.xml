@@ -56,6 +56,35 @@
            android:textColor="@color/black"
            tools:text="cursosandroidant@gmail.com"/>
 
+       <TextView
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:layout_marginTop="@dimen/common_padding_default"
+           android:text="@string/hint_phone"/>
+       <TextView
+           android:id="@+id/tvPhone"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:textColor="@color/black"
+           tools:text="+52 555 384 9345"
+           android:textSize="@dimen/profile_text_size_middle"/>
+
+       <TextView
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:layout_marginTop="@dimen/common_padding_default"
+           android:text="@string/hint_location"/>
+       <androidx.appcompat.widget.AppCompatTextView
+           android:id="@+id/tvLocation"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:textColor="@color/black"
+           android:text="@string/main_show_map"
+           android:textStyle="bold"
+           android:textSize="@dimen/profile_text_size_middle"
+           app:drawableEnd="@drawable/ic_map"
+           app:drawableTint="@color/black"/>
+
    </LinearLayout>
 
 </ScrollView>

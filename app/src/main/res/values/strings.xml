@@ -2,4 +2,8 @@
     <string name="app_name">Profile</string>
     <string name="hint_name">Nombre</string>
     <string name="hint_email">Correo electrónico</string>
+    <string name="hint_website">Sitio web</string>
+    <string name="hint_phone">Teléfono</string>
+    <string name="hint_location">Ubicación</string>
+    <string name="main_show_map">Ver en el mapa</string>
 </resources>
