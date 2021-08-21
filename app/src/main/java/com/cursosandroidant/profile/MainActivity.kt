@@ -1,5 +1,6 @@
 package com.cursosandroidant.profile
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.cursosandroidant.profile.databinding.ActivityMainBinding
@@ -19,7 +20,9 @@ class MainActivity : AppCompatActivity() {
         updateUI()
 
         binding.tvLocation.setOnClickListener {
-            binding.tvLocation.text = "Lat: $lat, Long: $long"
+            //binding.tvLocation.text = "Lat: $lat, Long: $long"
+            // Como agregar otra actividad a través de intents
+            startActivity(Intent(this, EditActivity::class.java))
         }
     }
 
