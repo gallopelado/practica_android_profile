@@ -3,6 +3,8 @@ package com.cursosandroidant.profile
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
 import com.cursosandroidant.profile.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
@@ -20,9 +22,7 @@ class MainActivity : AppCompatActivity() {
         updateUI()
 
         binding.tvLocation.setOnClickListener {
-            //binding.tvLocation.text = "Lat: $lat, Long: $long"
-            // Como agregar otra actividad a través de intents
-            startActivity(Intent(this, EditActivity::class.java))
+            binding.tvLocation.text = "Lat: $lat, Long: $long"
         }
     }
 
@@ -36,5 +36,18 @@ class MainActivity : AppCompatActivity() {
         binding.tvPhone.text = phone
         lat = -25.3448
         long = -57.5813
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.menu_main, menu)
+        return super.onCreateOptionsMenu(menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        if(item.itemId == R.id.action_edit){
+            // Como agregar otra actividad a través de intents
+            startActivity(Intent(this, EditActivity::class.java))
+        }
+        return super.onOptionsItemSelected(item)
     }
 }
