@@ -7,4 +7,5 @@
     <string name="hint_location">Ubicación</string>
     <string name="main_show_map">Ver en el mapa</string>
     <string name="main_settings">Habilitar ubicación</string>
+    <string name="edit_title">Editar datos de usuario</string>
 </resources>
