@@ -10,6 +10,7 @@
        android:layout_width="match_parent"
        android:layout_height="wrap_content"
        android:paddingHorizontal="@dimen/common_padding_default"
+       android:paddingBottom="@dimen/common_padding_default"
        android:gravity="center_horizontal"
        android:orientation="vertical">
 
@@ -60,6 +61,19 @@
            android:layout_width="wrap_content"
            android:layout_height="wrap_content"
            android:layout_marginTop="@dimen/common_padding_default"
+           android:text="@string/hint_website"/>
+       <TextView
+           android:id="@+id/tvWebsite"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:textStyle="italic"
+           android:textColor="@color/black"
+           tools:text="www.google.com"/>
+
+       <TextView
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:layout_marginTop="@dimen/common_padding_default"
            android:text="@string/hint_phone"/>
        <TextView
            android:id="@+id/tvPhone"
@@ -84,6 +98,14 @@
            android:textSize="@dimen/profile_text_size_middle"
            android:drawableEnd="@drawable/ic_map"
            app:drawableTint="@color/black"/>
+
+       <TextView
+           android:id="@+id/tvSettings"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:layout_marginTop="@dimen/common_padding_large"
+           android:text="@string/main_settings"
+           android:drawableStart="@drawable/ic_settings"/>
 
    </LinearLayout>
 
