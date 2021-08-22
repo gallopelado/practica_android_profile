@@ -46,7 +46,15 @@ class MainActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         if(item.itemId == R.id.action_edit){
             // Como agregar otra actividad a través de intents
-            startActivity(Intent(this, EditActivity::class.java))
+            val intent = Intent(this, EditActivity::class.java)
+            // Pasarle datos a esa activity
+            intent.putExtra(getString(R.string.key_name), binding.tvName.text)
+            intent.putExtra(getString(R.string.key_email), binding.tvEmail.text)
+            intent.putExtra(getString(R.string.key_website), binding.tvWebsite.text)
+            intent.putExtra(getString(R.string.key_phone), binding.tvPhone.text)
+            intent.putExtra(getString(R.string.key_lat), lat.toString())
+            intent.putExtra(getString(R.string.key_long), long.toString())
+            startActivity(intent)
         }
         return super.onOptionsItemSelected(item)
     }
