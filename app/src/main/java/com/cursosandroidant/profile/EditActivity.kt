@@ -1,5 +1,6 @@
 package com.cursosandroidant.profile
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
@@ -38,10 +39,26 @@ class EditActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         if(item.itemId == R.id.action_save) {
             // Destruye esta actividad
-            finish()
+            //finish()
+            sendData()
         } else if(item.itemId == android.R.id.home) {
             onBackPressed() // en vez de finish
         }
         return super.onOptionsItemSelected(item)
+    }
+
+    private fun sendData(){
+        val intent = Intent()
+        with(intent) {
+            putExtra(getString(R.string.key_name), binding.etName.text.toString())
+            putExtra(getString(R.string.key_email), binding.etEmail.text.toString())
+            putExtra(getString(R.string.key_website), binding.etWebsite.text.toString())
+            putExtra(getString(R.string.key_phone), binding.etPhone.text.toString())
+            putExtra(getString(R.string.key_lat), binding.etLat.text.toString())
+            putExtra(getString(R.string.key_long), binding.etLong.text.toString())
+
+            setResult(RESULT_OK, intent)
+        }
+        finish()
     }
 }
