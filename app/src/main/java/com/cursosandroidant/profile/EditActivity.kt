@@ -16,6 +16,9 @@ class EditActivity : AppCompatActivity() {
         binding = ActivityEditBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        // Agregar flecha de retroceso
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+
         //Recibir el dato
         with(binding){
             etName.setText(intent.extras?.getString(getString(R.string.key_name)))
@@ -36,6 +39,8 @@ class EditActivity : AppCompatActivity() {
         if(item.itemId == R.id.action_save) {
             // Destruye esta actividad
             finish()
+        } else if(item.itemId == android.R.id.home) {
+            onBackPressed() // en vez de finish
         }
         return super.onOptionsItemSelected(item)
     }
