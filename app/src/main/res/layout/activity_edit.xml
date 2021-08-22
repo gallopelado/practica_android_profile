@@ -102,6 +102,52 @@
 
         </com.google.android.material.textfield.TextInputLayout>
 
+        <!-- Tarea: agregar latitud y longitud en una fila -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:orientation="horizontal"
+            android:layout_marginTop="@dimen/common_padding_default"
+            android:layout_marginHorizontal="@dimen/common_padding_default">
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/tilLatitude"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="50"
+                android:layout_marginEnd="@dimen/common_padding_min"
+                android:hint="@string/hint_latitude">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etLat"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="numberDecimal|numberSigned"
+                    android:imeOptions="actionNext"
+                    android:nextFocusForward="@id/etLong"/>
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/tilLongitude"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="50"
+                android:layout_marginEnd="@dimen/common_padding_min"
+                android:hint="@string/hint_longitude">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etLong"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="numberDecimal|numberSigned"/>
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+        </LinearLayout>
+
+
     </LinearLayout>
 
 </ScrollView>

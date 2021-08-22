@@ -8,4 +8,6 @@
     <string name="main_show_map">Ver en el mapa</string>
     <string name="main_settings">Habilitar ubicación</string>
     <string name="edit_title">Editar datos de usuario</string>
+    <string name="hint_latitude">Latitud</string>
+    <string name="hint_longitude">Longitud</string>
 </resources>
