@@ -12,6 +12,8 @@ class EditActivity : AppCompatActivity() {
 
     private lateinit var binding:ActivityEditBinding
 
+    private lateinit var listObjects:ArrayList<com.google.android.material.textfield.TextInputEditText>
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityEditBinding.inflate(layoutInflater)
@@ -20,15 +22,42 @@ class EditActivity : AppCompatActivity() {
         // Agregar flecha de retroceso
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
-        //Recibir el dato
-        intent.extras?.let {
-            binding.etName.setText(it.getString(getString(R.string.key_name)))
-            binding.etEmail.setText(it.getString(getString(R.string.key_email)))
-            binding.etWebsite.setText(it.getString(getString(R.string.key_website)))
-            binding.etPhone.setText(it.getString(getString(R.string.key_phone)))
-            binding.etLat.setText(it.getString(getString(R.string.key_lat)))
-            binding.etLong.setText(it.getString(getString(R.string.key_long)))
+        listObjects = arrayListOf()
+        with(binding){
+            listObjects.addAll(listOf(etName, etEmail, etWebsite, etPhone, etLat, etLong))
+            //listObjects.add(etName)
         }
+
+
+        //Recibir el dato
+        with(binding) {
+            intent.extras?.let {
+                etName.setText(it.getString(getString(R.string.key_name)))
+                etEmail.setText(it.getString(getString(R.string.key_email)))
+                etWebsite.setText(it.getString(getString(R.string.key_website)))
+                etPhone.setText(it.getString(getString(R.string.key_phone)))
+                etLat.setText(it.getString(getString(R.string.key_lat)))
+                etLong.setText(it.getString(getString(R.string.key_long)))
+            }
+            // Poner el cursor al final de un campo que tiene datos
+            /*etWebsite.setOnFocusChangeListener { v, hasFocus ->
+                if(hasFocus){
+                    binding.etWebsite.text?.let {
+                        binding.etWebsite.setSelection(it.length)
+                    }
+                }
+            }*/
+            listObjects.forEach { item ->
+                item.setOnFocusChangeListener { v, hasFocus ->
+                    if(hasFocus){
+                       item.text?.let {
+                            item.setSelection(it.length)
+                        }
+                    }
+                }
+            }
+        }
+
         /*with(binding){
             etName.setText(intent.extras?.getString(getString(R.string.key_name)))
             etEmail.setText(intent.extras?.getString(getString(R.string.key_email)))
@@ -37,14 +66,6 @@ class EditActivity : AppCompatActivity() {
             etLat.setText(intent.extras?.getString(getString(R.string.key_lat)))
             etLong.setText(intent.extras?.getString(getString(R.string.key_long)))
         }*/
-        // Poner el cursor al final de un campo que tiene datos
-        binding.etWebsite.setOnFocusChangeListener { v, hasFocus ->
-            if(hasFocus){
-                binding.etWebsite.text?.let {
-                    binding.etWebsite.setSelection(it.length)
-                }
-            }
-        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
