@@ -37,6 +37,14 @@ class EditActivity : AppCompatActivity() {
             etLat.setText(intent.extras?.getString(getString(R.string.key_lat)))
             etLong.setText(intent.extras?.getString(getString(R.string.key_long)))
         }*/
+        // Poner el cursor al final de un campo que tiene datos
+        binding.etWebsite.setOnFocusChangeListener { v, hasFocus ->
+            if(hasFocus){
+                binding.etWebsite.text?.let {
+                    binding.etWebsite.setSelection(it.length)
+                }
+            }
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
