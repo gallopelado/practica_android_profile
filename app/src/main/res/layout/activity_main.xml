@@ -55,6 +55,8 @@
            android:textSize="@dimen/profile_text_size_middle"
            android:textStyle="italic"
            android:textColor="@color/black"
+           android:autoLink="email"
+           android:textColorLink="@color/black"
            tools:text="cursosandroidant@gmail.com"/>
 
        <TextView
@@ -68,6 +70,8 @@
            android:layout_height="wrap_content"
            android:textStyle="italic"
            android:textColor="@color/black"
+           android:autoLink="web"
+           android:textColorLink="@color/black"
            tools:text="www.google.com"/>
 
        <TextView

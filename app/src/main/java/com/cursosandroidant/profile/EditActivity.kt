@@ -6,7 +6,6 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import com.cursosandroidant.profile.databinding.ActivityEditBinding
-import com.cursosandroidant.profile.databinding.ActivityMainBinding
 
 class EditActivity : AppCompatActivity() {
 
