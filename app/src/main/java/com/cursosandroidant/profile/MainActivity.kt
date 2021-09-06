@@ -8,6 +8,7 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.TextView
+import android.widget.Toast
 import com.cursosandroidant.profile.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
@@ -40,7 +41,7 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(Intent.ACTION_WEB_SEARCH).apply {
                 putExtra(SearchManager.QUERY, binding.tvName.text.toString())
             }
-            startActivity(intent)
+            launchIntent(intent)
         }
         /*
         * Asignar evento click al email, crear un intent y configurar cree la accion de enviar
@@ -53,19 +54,33 @@ class MainActivity : AppCompatActivity() {
                 putExtra(Intent.EXTRA_SUBJECT, "From Kotlin course")
                 putExtra(Intent.EXTRA_TEXT, "Hi I'm Android developer")
             }
-            startActivity(intent)
+            launchIntent(intent)
         }
         binding.tvWebsite.setOnClickListener {
             val webPage = Uri.parse(binding.tvWebsite.text.toString())
             val intent = Intent(Intent.ACTION_VIEW, webPage)
-            startActivity(intent)
+            launchIntent(intent)
         }
         binding.tvPhone.setOnClickListener {
             val intent = Intent(Intent.ACTION_DIAL).apply {
                 val phone = (it as TextView).text
                 data = Uri.parse("tel:$phone")
             }
+            launchIntent(intent)
+        }
+    }
+
+    /* Desde el API 30 es preferible validar los intents, para saber si están disponibles en el
+    * dispositivo */
+    /*
+    * También se añaden las queries en el AndroidManifest.xml para indicar permisos
+    * que utilizamos en el cada intent, se recomiendo no abusar de ellos.
+    * */
+    private fun launchIntent(intent: Intent) {
+        if(intent.resolveActivity(packageManager) != null){
             startActivity(intent)
+        } else {
+            Toast.makeText(this, getString(R.string.profile_error_no_resolve), Toast.LENGTH_SHORT).show()
         }
     }
 

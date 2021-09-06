@@ -20,5 +20,6 @@
     <string name="key_phone">k_phone</string>
     <string name="key_lat">k_lat</string>
     <string name="key_long">k_long</string>
+    <string name="profile_error_no_resolve">No se encontró la aplicación compatible</string>
 
 </resources>
