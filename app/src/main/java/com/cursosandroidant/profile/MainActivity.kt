@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import android.widget.TextView
 import com.cursosandroidant.profile.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
@@ -51,6 +52,18 @@ class MainActivity : AppCompatActivity() {
                 putExtra(Intent.EXTRA_EMAIL, arrayOf(binding.tvEmail.text.toString()))
                 putExtra(Intent.EXTRA_SUBJECT, "From Kotlin course")
                 putExtra(Intent.EXTRA_TEXT, "Hi I'm Android developer")
+            }
+            startActivity(intent)
+        }
+        binding.tvWebsite.setOnClickListener {
+            val webPage = Uri.parse(binding.tvWebsite.text.toString())
+            val intent = Intent(Intent.ACTION_VIEW, webPage)
+            startActivity(intent)
+        }
+        binding.tvPhone.setOnClickListener {
+            val intent = Intent(Intent.ACTION_DIAL).apply {
+                val phone = (it as TextView).text
+                data = Uri.parse("tel:$phone")
             }
             startActivity(intent)
         }

@@ -57,6 +57,7 @@
            android:textStyle="italic"
            android:textColor="@color/black"
            android:textColorLink="@color/black"
+           android:autoLink="email"
            android:linksClickable="false"
            tools:text="cursosandroidant@gmail.com"/>
 
@@ -72,6 +73,7 @@
            android:textStyle="italic"
            android:textColor="@color/black"
            android:autoLink="web"
+           android:linksClickable="false"
            android:textColorLink="@color/black"
            tools:text="www.google.com"/>
 
