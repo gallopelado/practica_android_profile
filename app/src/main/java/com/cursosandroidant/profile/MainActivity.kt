@@ -2,6 +2,7 @@ package com.cursosandroidant.profile
 
 import android.app.SearchManager
 import android.content.Intent
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
@@ -37,6 +38,19 @@ class MainActivity : AppCompatActivity() {
         binding.tvName.setOnClickListener {
             val intent = Intent(Intent.ACTION_WEB_SEARCH).apply {
                 putExtra(SearchManager.QUERY, binding.tvName.text.toString())
+            }
+            startActivity(intent)
+        }
+        /*
+        * Asignar evento click al email, crear un intent y configurar cree la accion de enviar
+        * email a través del sistema
+        * */
+        binding.tvEmail.setOnClickListener {
+            val intent = Intent(Intent.ACTION_SENDTO).apply {
+                data = Uri.parse("mailto:")
+                putExtra(Intent.EXTRA_EMAIL, arrayOf(binding.tvEmail.text.toString()))
+                putExtra(Intent.EXTRA_SUBJECT, "From Kotlin course")
+                putExtra(Intent.EXTRA_TEXT, "Hi I'm Android developer")
             }
             startActivity(intent)
         }

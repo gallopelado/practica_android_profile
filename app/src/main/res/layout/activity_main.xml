@@ -48,6 +48,7 @@
            android:layout_height="wrap_content"
            android:layout_marginTop="@dimen/common_padding_default"
            android:text="@string/hint_email"/>
+       <!--android:autoLink="email"-->
        <TextView
            android:id="@+id/tvEmail"
            android:layout_width="wrap_content"
@@ -55,8 +56,8 @@
            android:textSize="@dimen/profile_text_size_middle"
            android:textStyle="italic"
            android:textColor="@color/black"
-           android:autoLink="email"
            android:textColorLink="@color/black"
+           android:linksClickable="false"
            tools:text="cursosandroidant@gmail.com"/>
 
        <TextView
