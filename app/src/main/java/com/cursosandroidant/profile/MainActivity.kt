@@ -26,9 +26,9 @@ class MainActivity : AppCompatActivity() {
         updateUI()
         setupIntents()
 
-        binding.tvLocation.setOnClickListener {
-            binding.tvLocation.text = "Lat: $lat, Long: $long"
-        }
+//        binding.tvLocation.setOnClickListener {
+//            binding.tvLocation.text = "Lat: $lat, Long: $long"
+//        }
     }
 
     private fun setupIntents() {
@@ -65,6 +65,13 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(Intent.ACTION_DIAL).apply {
                 val phone = (it as TextView).text
                 data = Uri.parse("tel:$phone")
+            }
+            launchIntent(intent)
+        }
+        binding.tvLocation.setOnClickListener {
+            val intent = Intent(Intent.ACTION_VIEW).apply {
+                data = Uri.parse("geo:0,0?q=$lat,$long(Cursos Android ANT)")
+                `package` = "com.google.android.apps.maps"
             }
             launchIntent(intent)
         }
