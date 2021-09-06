@@ -1,5 +1,6 @@
 package com.cursosandroidant.profile
 
+import android.app.SearchManager
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -20,9 +21,24 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         updateUI()
+        setupIntents()
 
         binding.tvLocation.setOnClickListener {
             binding.tvLocation.text = "Lat: $lat, Long: $long"
+        }
+    }
+
+    private fun setupIntents() {
+        /*
+        * Asignar evento click al título, crear un intent y configurar para que este reciba
+        * el texto del título y pueda ser buscado a través de algún browser instalado
+        * en Android
+        * */
+        binding.tvName.setOnClickListener {
+            val intent = Intent(Intent.ACTION_WEB_SEARCH).apply {
+                putExtra(SearchManager.QUERY, binding.tvName.text.toString())
+            }
+            startActivity(intent)
         }
     }
 
