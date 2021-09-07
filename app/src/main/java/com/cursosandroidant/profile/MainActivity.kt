@@ -2,6 +2,7 @@ package com.cursosandroidant.profile
 
 import android.app.SearchManager
 import android.content.Intent
+import android.content.SharedPreferences
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -10,11 +11,13 @@ import android.view.Menu
 import android.view.MenuItem
 import android.widget.TextView
 import android.widget.Toast
+import androidx.preference.PreferenceManager
 import com.cursosandroidant.profile.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
+    private lateinit var sharedPreferences: SharedPreferences
     private var imgUri: Uri? = null
 
     private var lat: Double = 0.0
@@ -25,12 +28,11 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        // Inicialización
+        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this)
+
         updateUI()
         setupIntents()
-
-//        binding.tvLocation.setOnClickListener {
-//            binding.tvLocation.text = "Lat: $lat, Long: $long"
-//        }
     }
 
     private fun setupIntents() {
