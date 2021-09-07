@@ -32,7 +32,8 @@ class MainActivity : AppCompatActivity() {
         // Inicialización
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this)
 
-        updateUI()
+        //updateUI()
+        getUserData()
         setupIntents()
     }
 
@@ -105,6 +106,18 @@ class MainActivity : AppCompatActivity() {
         } else {
             Toast.makeText(this, getString(R.string.profile_error_no_resolve), Toast.LENGTH_SHORT).show()
         }
+    }
+
+    private fun getUserData() {
+        imgUri = Uri.parse(sharedPreferences.getString(getString(R.string.key_image), ""))
+        val name = sharedPreferences.getString(getString(R.string.key_name), null)
+        val email = sharedPreferences.getString(getString(R.string.key_email), null)
+        val website = sharedPreferences.getString(getString(R.string.key_website), null)
+        val phone = sharedPreferences.getString(getString(R.string.key_phone), null)
+        val lat = sharedPreferences.getString(getString(R.string.key_lat), "0.0")!!.toDouble()
+        val long = sharedPreferences.getString(getString(R.string.key_long), "0.0")!!.toDouble()
+
+        updateUI(name!!, email!!, website!!, phone!!, lat!!, long!!)
     }
 
     private fun updateUI(name:String="Cursos Android ANT"
