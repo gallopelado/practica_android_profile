@@ -33,7 +33,7 @@ class EditActivity : AppCompatActivity() {
         with(binding) {
             intent.extras?.let {
                 imgUri = Uri.parse(it.getString(getString(R.string.key_image)))
-                imgProfile.setImageURI(imgUri)
+                updateImage()
                 etName.setText(it.getString(getString(R.string.key_name)))
                 etEmail.setText(it.getString(getString(R.string.key_email)))
                 etWebsite.setText(it.getString(getString(R.string.key_website)))
@@ -78,9 +78,19 @@ class EditActivity : AppCompatActivity() {
         if(resultCode == RESULT_OK) {
             if(requestCode == RC_GALLERY) {
                 imgUri = data?.data
-                binding.imgProfile.setImageURI(imgUri)
+                // creacion de permisos para la imagen
+                imgUri?.let {
+                    val contentResolver = applicationContext.contentResolver
+                    val takeFlags = Intent.FLAG_GRANT_READ_URI_PERMISSION or Intent.FLAG_GRANT_WRITE_URI_PERMISSION
+                    contentResolver.takePersistableUriPermission(it, takeFlags)
+                    updateImage()
+                }
             }
         }
+    }
+
+    private fun updateImage(){
+        binding.imgProfile.setImageURI(imgUri)
     }
 
     private fun sendData(){
