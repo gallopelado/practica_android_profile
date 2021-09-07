@@ -5,6 +5,7 @@ import android.content.Intent
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.provider.Settings
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.TextView
@@ -73,6 +74,10 @@ class MainActivity : AppCompatActivity() {
                 data = Uri.parse("geo:0,0?q=$lat,$long(Cursos Android ANT)")
                 `package` = "com.google.android.apps.maps"
             }
+            launchIntent(intent)
+        }
+        binding.tvSettings.setOnClickListener {
+            val intent = Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS)
             launchIntent(intent)
         }
     }
