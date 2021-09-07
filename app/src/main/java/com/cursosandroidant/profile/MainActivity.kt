@@ -64,7 +64,14 @@ class MainActivity : AppCompatActivity() {
             launchIntent(intent)
         }
         binding.tvPhone.setOnClickListener {
-            val intent = Intent(Intent.ACTION_DIAL).apply {
+//            val intent = Intent(Intent.ACTION_DIAL).apply {
+//                val phone = (it as TextView).text
+//                data = Uri.parse("tel:$phone")
+//            }
+            // Para cuando se desee llamar directamente
+            // Se agrega el permiso en el manifest
+            // luego se agrega el permiso manualmente en settings del sistema
+            val intent = Intent(Intent.ACTION_CALL).apply {
                 val phone = (it as TextView).text
                 data = Uri.parse("tel:$phone")
             }
