@@ -11,6 +11,7 @@ import android.view.Menu
 import android.view.MenuItem
 import android.widget.TextView
 import android.widget.Toast
+import androidx.core.content.edit
 import androidx.preference.PreferenceManager
 import com.cursosandroidant.profile.databinding.ActivityMainBinding
 
@@ -143,6 +144,7 @@ class MainActivity : AppCompatActivity() {
         return super.onOptionsItemSelected(item)
     }
 
+    // Gestiona los datos provenientes de la otra activity, editactivity
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 
@@ -156,9 +158,24 @@ class MainActivity : AppCompatActivity() {
                 val lat = data?.getStringExtra(getString(R.string.key_lat))?.toDouble() ?: 0.0
                 val long = data?.getStringExtra(getString(R.string.key_long))?.toDouble() ?: 0.0
 
-                updateUI(name, email, website, phone, lat, long)
+                //updateUI(name, email, website, phone, lat, long)
+                saveUserData(name, email, website, phone, lat, long)
             }
         }
+    }
+
+    private fun saveUserData(name: String?, email: String?, website: String?, phone: String?, lat: Double?, long: Double?) {
+        sharedPreferences.edit {
+            putString(getString(R.string.key_image), imgUri.toString())
+            putString(getString(R.string.key_name), name)
+            putString(getString(R.string.key_email), email)
+            putString(getString(R.string.key_website), website)
+            putString(getString(R.string.key_phone), phone)
+            putString(getString(R.string.key_lat), lat.toString())
+            putString(getString(R.string.key_long), long.toString())
+            apply() // guardar estos datos
+        }
+        updateUI(name!!, email!!, website!!, phone!!, lat!!, long!!)
     }
 
     companion object {
