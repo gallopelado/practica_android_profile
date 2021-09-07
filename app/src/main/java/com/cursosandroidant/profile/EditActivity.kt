@@ -1,6 +1,7 @@
 package com.cursosandroidant.profile
 
 import android.content.Intent
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
@@ -10,6 +11,7 @@ import com.cursosandroidant.profile.databinding.ActivityEditBinding
 class EditActivity : AppCompatActivity() {
 
     private lateinit var binding:ActivityEditBinding
+    private var imgUri: Uri? = null
 
     private lateinit var listObjects:ArrayList<com.google.android.material.textfield.TextInputEditText>
 
@@ -27,7 +29,6 @@ class EditActivity : AppCompatActivity() {
             //listObjects.add(etName)
         }
 
-
         //Recibir el dato
         with(binding) {
             intent.extras?.let {
@@ -38,14 +39,6 @@ class EditActivity : AppCompatActivity() {
                 etLat.setText(it.getString(getString(R.string.key_lat)))
                 etLong.setText(it.getString(getString(R.string.key_long)))
             }
-            // Poner el cursor al final de un campo que tiene datos
-            /*etWebsite.setOnFocusChangeListener { v, hasFocus ->
-                if(hasFocus){
-                    binding.etWebsite.text?.let {
-                        binding.etWebsite.setSelection(it.length)
-                    }
-                }
-            }*/
             listObjects.forEach { item ->
                 item.setOnFocusChangeListener { v, hasFocus ->
                     if(hasFocus){
@@ -55,16 +48,14 @@ class EditActivity : AppCompatActivity() {
                     }
                 }
             }
+            btnSelectPhoto.setOnClickListener {
+                val intent = Intent(Intent.ACTION_OPEN_DOCUMENT).apply {
+                    addCategory(Intent.CATEGORY_OPENABLE)
+                    type = "image/jpeg"
+                }
+                startActivityForResult(intent, RC_GALLERY)
+            }
         }
-
-        /*with(binding){
-            etName.setText(intent.extras?.getString(getString(R.string.key_name)))
-            etEmail.setText(intent.extras?.getString(getString(R.string.key_email)))
-            etWebsite.setText(intent.extras?.getString(getString(R.string.key_website)))
-            etPhone.setText(intent.extras?.getString(getString(R.string.key_phone)))
-            etLat.setText(intent.extras?.getString(getString(R.string.key_lat)))
-            etLong.setText(intent.extras?.getString(getString(R.string.key_long)))
-        }*/
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -77,16 +68,17 @@ class EditActivity : AppCompatActivity() {
             R.id.action_save -> sendData()
             android.R.id.home -> onBackPressed()
         }
-        /*
-        if(item.itemId == R.id.action_save) {
-            // Destruye esta actividad
-            //finish()
-            sendData()
-        } else if(item.itemId == android.R.id.home) {
-            onBackPressed() // en vez de finish
-        }
-         */
         return super.onOptionsItemSelected(item)
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if(resultCode == RESULT_OK) {
+            if(requestCode == RC_GALLERY) {
+                imgUri = data?.data
+                binding.imgProfile.setImageURI(imgUri)
+            }
+        }
     }
 
     private fun sendData(){
@@ -101,16 +93,11 @@ class EditActivity : AppCompatActivity() {
                 putExtra(getString(R.string.key_long), etLong.text.toString())
             }
         }
-        /*
-        with(intent) {
-            putExtra(getString(R.string.key_name), binding.etName.text.toString())
-            putExtra(getString(R.string.key_email), binding.etEmail.text.toString())
-            putExtra(getString(R.string.key_website), binding.etWebsite.text.toString())
-            putExtra(getString(R.string.key_phone), binding.etPhone.text.toString())
-            putExtra(getString(R.string.key_lat), binding.etLat.text.toString())
-            putExtra(getString(R.string.key_long), binding.etLong.text.toString())
-        }*/
         setResult(RESULT_OK, intent)
         finish()
+    }
+
+    companion object {
+        private const val  RC_GALLERY = 22
     }
 }
