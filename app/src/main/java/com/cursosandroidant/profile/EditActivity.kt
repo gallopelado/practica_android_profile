@@ -32,6 +32,8 @@ class EditActivity : AppCompatActivity() {
         //Recibir el dato
         with(binding) {
             intent.extras?.let {
+                imgUri = Uri.parse(it.getString(getString(R.string.key_image)))
+                imgProfile.setImageURI(imgUri)
                 etName.setText(it.getString(getString(R.string.key_name)))
                 etEmail.setText(it.getString(getString(R.string.key_email)))
                 etWebsite.setText(it.getString(getString(R.string.key_website)))
@@ -85,6 +87,7 @@ class EditActivity : AppCompatActivity() {
         val intent = Intent()
         with(binding){
             intent.apply {
+                putExtra(getString(R.string.key_image), imgUri.toString())
                 putExtra(getString(R.string.key_name), etName.text.toString())
                 putExtra(getString(R.string.key_email), etEmail.text.toString())
                 putExtra(getString(R.string.key_website), etWebsite.text.toString())

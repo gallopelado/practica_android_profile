@@ -15,6 +15,7 @@ import com.cursosandroidant.profile.databinding.ActivityMainBinding
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
+    private var imgUri: Uri? = null
 
     private var lat: Double = 0.0
     private var long: Double = 0.0
@@ -100,6 +101,7 @@ class MainActivity : AppCompatActivity() {
                          , email:String="cursosandroidant@gmail.com"
                          , website:String="https://github.com/gallopelado"
                          , phone:String="+52 555 673", lat:Double=-25.3448, long:Double=-57.5813) {
+        binding.imgProfile.setImageURI(imgUri)
         binding.tvName.text = name
         binding.tvEmail.text = email
         binding.tvWebsite.text = website
@@ -118,6 +120,7 @@ class MainActivity : AppCompatActivity() {
             // Como agregar otra actividad a través de intents
             val intent = Intent(this, EditActivity::class.java)
             // Pasarle datos a esa activity
+            intent.putExtra(getString(R.string.key_image), imgUri.toString())
             intent.putExtra(getString(R.string.key_name), binding.tvName.text)
             intent.putExtra(getString(R.string.key_email), binding.tvEmail.text.toString())
             intent.putExtra(getString(R.string.key_website), binding.tvWebsite.text.toString())
@@ -136,6 +139,7 @@ class MainActivity : AppCompatActivity() {
 
         if(resultCode == RESULT_OK){
             if(requestCode == RC_EDIT){
+                imgUri = Uri.parse(data?.getStringExtra(getString(R.string.key_image))) ?: null
                 val name = data?.getStringExtra(getString(R.string.key_name)) ?: ""
                 val email = data?.getStringExtra(getString(R.string.key_email)) ?: ""
                 val website = data?.getStringExtra(getString(R.string.key_website)) ?: ""
