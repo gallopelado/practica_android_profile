@@ -19,7 +19,7 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
     private lateinit var sharedPreferences: SharedPreferences
-    private var imgUri: Uri? = null
+    private lateinit var imgUri: Uri
 
     private var lat: Double = 0.0
     private var long: Double = 0.0
@@ -117,20 +117,19 @@ class MainActivity : AppCompatActivity() {
         val lat = sharedPreferences.getString(getString(R.string.key_lat), "0.0")!!.toDouble()
         val long = sharedPreferences.getString(getString(R.string.key_long), "0.0")!!.toDouble()
 
-        updateUI(name!!, email!!, website!!, phone!!, lat!!, long!!)
+        updateUI(name, email, website, phone, lat, long)
     }
 
-    private fun updateUI(name:String="Cursos Android ANT"
-                         , email:String="cursosandroidant@gmail.com"
-                         , website:String="https://github.com/gallopelado"
-                         , phone:String="+52 555 673", lat:Double=-25.3448, long:Double=-57.5813) {
-        binding.imgProfile.setImageURI(imgUri)
-        binding.tvName.text = name
-        binding.tvEmail.text = email
-        binding.tvWebsite.text = website
-        binding.tvPhone.text = phone
-        this.lat = lat
-        this.long = long
+    private fun updateUI(name:String?, email:String?, website:String?, phone:String?, lat:Double?, long:Double?) {
+        with(binding){
+            imgProfile.setImageURI(imgUri)
+            tvName.text = name ?: "Cursos Android ANT"
+            tvEmail.text = email ?: "cursosandroidant@gmail.com"
+            tvWebsite.text = website ?: "https://github.com/gallopelado"
+            tvPhone.text = phone ?: "+52 555 673"
+        }
+        this.lat = lat ?: -25.3448
+        this.long = long ?: -57.5813
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -163,7 +162,7 @@ class MainActivity : AppCompatActivity() {
 
         if(resultCode == RESULT_OK){
             if(requestCode == RC_EDIT){
-                imgUri = Uri.parse(data?.getStringExtra(getString(R.string.key_image))) ?: null
+                imgUri = Uri.parse(data?.getStringExtra(getString(R.string.key_image)))
                 val name = data?.getStringExtra(getString(R.string.key_name)) ?: ""
                 val email = data?.getStringExtra(getString(R.string.key_email)) ?: ""
                 val website = data?.getStringExtra(getString(R.string.key_website)) ?: ""
@@ -188,7 +187,7 @@ class MainActivity : AppCompatActivity() {
             putString(getString(R.string.key_long), long.toString())
             apply() // guardar estos datos
         }
-        updateUI(name!!, email!!, website!!, phone!!, lat!!, long!!)
+        updateUI(name, email, website, phone, lat, long)
     }
 
     companion object {
