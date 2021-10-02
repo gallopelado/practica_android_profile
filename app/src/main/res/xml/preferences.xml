@@ -11,6 +11,16 @@
     </PreferenceCategory>
 
     <PreferenceCategory
+        app:title="@string/preferences_ui_title">
+        <ListPreference
+            app:title="@string/preferences_ui_img_size"
+            app:key="@string/preferences_key_ui_img_size"
+            app:entries="@array/sizes"
+            app:entryValues="@array/sizes_values"
+            app:defaultValue="@string/preferences_key_img_size_large"/>
+    </PreferenceCategory>
+
+    <PreferenceCategory
         app:title="@string/preferences_data_title">
         <Preference
             app:title="@string/preferences_delete_data"
