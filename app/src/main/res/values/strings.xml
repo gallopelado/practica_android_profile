@@ -22,5 +22,6 @@
     <string name="key_long">k_long</string>
     <string name="profile_error_no_resolve">No se encontró la aplicación compatible</string>
     <string name="key_image">k_image</string>
+    <string name="settings_title">Configuración</string>
 
 </resources>
