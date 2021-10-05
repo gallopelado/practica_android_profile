@@ -32,9 +32,33 @@ class MainActivity : AppCompatActivity() {
         // Inicialización
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this)
 
+        // desactiva el click
+        //binding.tvName.isEnabled = sharedPreferences.getBoolean(getString(R.string.preferences_key_enable_clicks), true)
+        disableClicks()
+
         //updateUI()
         getUserData()
         setupIntents()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        // desactiva el click
+        //binding.tvName.isEnabled = sharedPreferences.getBoolean(getString(R.string.preferences_key_enable_clicks), true)
+        disableClicks()
+    }
+
+    private fun disableClicks() {
+        // desactiva el click
+        val is_enable = sharedPreferences.getBoolean(getString(R.string.preferences_key_enable_clicks), true)
+        with(binding){
+            tvName.isEnabled = is_enable
+            tvEmail.isEnabled = is_enable
+            tvWebsite.isEnabled = is_enable
+            tvPhone.isEnabled = is_enable
+            tvLocation.isEnabled = is_enable
+            tvSettings.isEnabled = is_enable
+        }
     }
 
     private fun setupIntents() {
