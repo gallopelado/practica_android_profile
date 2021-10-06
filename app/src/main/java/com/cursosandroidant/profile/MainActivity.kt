@@ -12,6 +12,7 @@ import android.view.MenuItem
 import android.widget.TextView
 import android.widget.Toast
 import androidx.core.content.edit
+import androidx.core.view.updateLayoutParams
 import androidx.preference.PreferenceManager
 import com.cursosandroidant.profile.databinding.ActivityMainBinding
 
@@ -34,7 +35,7 @@ class MainActivity : AppCompatActivity() {
 
         // desactiva el click
         //binding.tvName.isEnabled = sharedPreferences.getBoolean(getString(R.string.preferences_key_enable_clicks), true)
-        disableClicks()
+        refreshSettingsPreferences()
 
         //updateUI()
         getUserData()
@@ -45,10 +46,10 @@ class MainActivity : AppCompatActivity() {
         super.onResume()
         // desactiva el click
         //binding.tvName.isEnabled = sharedPreferences.getBoolean(getString(R.string.preferences_key_enable_clicks), true)
-        disableClicks()
+        refreshSettingsPreferences()
     }
 
-    private fun disableClicks() {
+    private fun refreshSettingsPreferences() {
         // desactiva el click
         val is_enable = sharedPreferences.getBoolean(getString(R.string.preferences_key_enable_clicks), true)
         with(binding){
@@ -58,6 +59,24 @@ class MainActivity : AppCompatActivity() {
             tvPhone.isEnabled = is_enable
             tvLocation.isEnabled = is_enable
             tvSettings.isEnabled = is_enable
+        }
+        // para manejar la Interfaz y tamaños en preferences
+        val imgSize = sharedPreferences.getString(getString(R.string.preferences_key_ui_img_size), "")
+        val sizeValue = when(imgSize) {
+            getString(R.string.preferences_key_img_size_small) -> {
+                resources.getDimensionPixelSize(R.dimen.profile_image_size_small)
+            }
+            getString(R.string.preferences_key_img_size_medium) -> {
+                resources.getDimensionPixelSize(R.dimen.profile_image_size_medium)
+            }
+            else -> {
+                resources.getDimensionPixelSize(R.dimen.profile_image_size_large)
+            }
+        }
+        // Se obtiene el componente de la image y se actualiza su width y height
+        binding.imgProfile.updateLayoutParams {
+            width = sizeValue
+            height = sizeValue
         }
     }
 
