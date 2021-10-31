@@ -78,6 +78,8 @@ class MainActivity : AppCompatActivity() {
             width = sizeValue
             height = sizeValue
         }
+
+        getUserData()
     }
 
     private fun setupIntents() {
