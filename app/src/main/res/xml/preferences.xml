@@ -30,4 +30,11 @@
             app:key="@string/preferences_key_restore_data"/>
     </PreferenceCategory>
 
+    <PreferenceCategory
+        app:title="@string/preferences_settings_title">
+        <Preference
+            app:title="Restaurar sólo configuraciones por defecto"
+            app:key="@string/preferences_key_set_default_settings"/>
+    </PreferenceCategory>
+
 </PreferenceScreen>

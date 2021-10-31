@@ -38,5 +38,12 @@ class SettingsFragment : PreferenceFragmentCompat() {
 
             true
         }
+
+        val defaultPreferences = findPreference<Preference>(getString(R.string.preferences_key_set_default_settings))
+        defaultPreferences?.setOnPreferenceClickListener {
+            switchPreferenceCompat?.isChecked = true
+            listPreference?.value = getString(R.string.preferences_key_img_size_large)
+            true
+        }
     }
 }

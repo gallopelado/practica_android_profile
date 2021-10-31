@@ -42,5 +42,7 @@
     <string name="preferences_ui_title">Interfaz</string>
     <string name="preferences_ui_img_size">Tamaño de la imagen</string>
     <string name="preferences_key_ui_img_size">pref_ui_image_size</string>
+    <string name="preferences_settings_title">Configuraciones</string>
+    <string name="preferences_key_set_default_settings">pref_set_default_settings</string>
 
 </resources>
